@@ -1,0 +1,8 @@
+<h1> Listing Products: <%= @products.size %></h1>
+
+<ol> 
+ 	<% @products.each do |product| %>
+ 	<li> <%= product.capitalize %></li>
+ 	<% end %>
+</ol>
+

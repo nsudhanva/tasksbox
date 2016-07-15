@@ -1,0 +1,44 @@
+<h1> Assignment 1 </h1>
+
+<% movies = {
+	"uturn" => ["veeresh, pvr", 120, 8.4],
+	"kabali" => ["inox, lido", 144, 9.2],
+	"sultan" => ["inox, pvr, lido", 132, 9.8]
+} %>
+
+<h3> Now showing </h3>
+
+<ol> 
+	<% movies.each do |movie, details| %>
+		<li><%= movie.capitalize %> </li>
+			<ul>
+				<li> <%= "Movie: #{details[0]}" %> </li>
+				<li> <%= "Seats: #{details[1]}" %> </li>
+				<li> <%= "Ratings: #{details[2]}" %> </li>
+			</ul>
+	<% end %>
+</ol>
+
+<% movies = ["U Turn", "Thithi", "Godhi Banna", "Sultan"] %>
+
+<ol>
+	<li> Apple </li>
+	<li> Mango </li>
+	<li> Orange </li>
+</ol>
+
+<h3> Now showing </h3>
+
+<ol> 
+	<% movies.each do |movie| %>
+		<li><%= movie %> </li>
+	<% end %>
+</ol>
+
+<% signed_in = [true, false].sample %>
+
+<% if signed_in %>
+	<p>Welcome User</p>
+<% else %>
+	<p> Login to continue </p>
+<% end %>
