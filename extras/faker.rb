@@ -18,3 +18,4 @@ end
 	project.save
 end
 
+#Project.all.each {|project| project.update_attributes(estimated_budget: 0)}

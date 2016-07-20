@@ -1,9 +1,4 @@
 <h1>Total Clients <%= @clients.size %></h1>
-<ol> 
-	<% @clients.each do |client| %>
-	<li> Name: <%= client.name %>, Company: <%= client.company %>, Mobile: <%= client.mobile %>, Website: <%= client.website %>, Email: <%= client.email %></li>
-	<% end %>
-</ol>
 
 <table border="5">
 	<thead>
@@ -12,8 +7,8 @@
 			<th>Name</th>
 			<th>Company</th>
 			<th>Mobile</th>
-			<th>Website</th>
 			<th>Email</th>
+			
 		</tr>
 	</thead>
 
@@ -24,7 +19,7 @@
 			<td><%= client.name.capitalize %></td>
 			<td><%= client.company.capitalize %></td>
 			<td><%= client.mobile %></td>
-			<td><%= client.website %></td>
+			
 			<td><%= client.email %></td>
 		</tr>
 		<% end %>
@@ -33,14 +28,4 @@
 
 <hr>
 
-<h3>
-	<p>Name: <%= @client.name.capitalize %></p>
-	<p>Company: <%= @client.company %></p>
-</h3>
 
-<h3>
-	<% @client_by_id.each do |client| %>
-	<p>Name: <%= client.name.capitalize %></p>
-	<p>Company: <%= client.company %></p>
-	<% end %>
-</h3>
