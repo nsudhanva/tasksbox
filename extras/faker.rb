@@ -18,4 +18,12 @@ end
 	project.save
 end
 
+200.times do
+	task = Task.new
+	task.title = Faker::App.name
+	task.project_id = Project.all.pluck(:id).sample
+	task.due_date = Faker::Date.between(Date.today, Date.today + 365)
+	task.is_completed = [true, false].sample
+	task.save
+end
 #Project.all.each {|project| project.update_attributes(estimated_budget: 0)}

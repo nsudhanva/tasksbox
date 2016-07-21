@@ -1,0 +1,23 @@
+<h1>Listing All Projects with Tasks</h1>
+<h3>Total Projects: <%= @projects.size %></h3>
+
+<ul>
+	<% projects = Project.all %>	
+	<% projects.each do |project| %>
+	<li><%= project.name %></li>
+	<ul>
+		<% project.tasks.each do |task| %>
+			<% if task.is_completed %>				
+				<li><%= task.title %>, Completed, Due: <%= task.due_date.to_date %> </li> 
+			<% else %>				
+				<li><%= task.title %>, Incomplete, Due:<%= task.due_date.to_date %> 
+					<% if task.due_date.to_date > Date.today %>
+						<b>, Overdue</b>
+					<% end %>					
+				</li> 
+				
+			<% end %>
+		<% end %>
+	</ul>
+	<% end %>
+</ul>

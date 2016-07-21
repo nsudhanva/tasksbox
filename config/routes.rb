@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'task/tasks'
+
   get 'sandbox/clients'
   get 'sandbox/projects'
 

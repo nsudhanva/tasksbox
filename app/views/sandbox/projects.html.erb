@@ -1,6 +1,12 @@
 <h1>Listing Projects</h1>
 <h3>Total Projects: <%= @projects.size%></h3>
 
+<ul>
+<% @projects.new_projects.each do |project| %>	
+		<li><%= project.name %></li>	
+<% end %>
+</ul>
+
 <table border="1">
 	<thead>
 		<tr>
