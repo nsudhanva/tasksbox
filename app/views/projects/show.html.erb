@@ -1,0 +1,19 @@
+<h1>Project details</h1>
+
+<h2>Project Name: <%= @project.name %></h2>
+<h3>Description: <%= @project.description %></h3>
+<h3>Start Date: <%= @project.start_date %></h3>
+<h3>End Date: <%= @project.end_date %></h3>
+<h3>Estimated Budget: <%= @project.estimated_budget %></h3>
+<h3>Status: <%= @project.status %></h3>
+
+<% if @project.tasks.empty? %>
+	No tasks found
+<% else %>
+<h3> Total tasks: <%= @project.tasks.size %></h3>
+<ul>
+	<% @project.tasks.each do |task| %>
+	<li><%= tasks.name %></li>
+	<% end %>	
+</ul>
+<% end %>	

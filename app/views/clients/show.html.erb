@@ -1,0 +1,17 @@
+<h1>Client details</h1>
+
+<h2>Name: <%= @client.name %></h2>
+<h3>Mobile: <%= @client.mobile %></h3>
+<h3>Company: <%= @client.company %></h3>
+<h3>Email: <%= @client.email %></h3>
+
+<% if @client.projects.empty? %>
+	No projects found
+<% else %>
+<h3> Total Projects: <%= @client.projects.size %></h3>
+<ul>
+	<% @client.projects.each do |project| %>
+	<li><%= project.name %></li>
+	<% end %>	
+</ul>
+<% end %>	

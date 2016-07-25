@@ -1,0 +1,33 @@
+<h1>Listing all clients</h1>																		
+
+<% if @clients.empty? %>
+	<p> No records found </p>
+<% else %>
+	<table border="5">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Company</th>
+			<th>Mobile</th>
+			<th>Email</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @clients.each_with_index do |client, index| %>
+		<tr>
+			<td><%= index + 1 %></td>
+			<td><%= client.name.capitalize %></td>
+			<td><%= client.company.capitalize %></td>
+			<td><%= client.mobile %></td>			
+			<td><%= client.email %></td>
+			<td><%= link_to "Show", client_path(client.id) %></td>
+		</tr>
+		<% end %>						
+	</tbody>
+</table>
+<% end %>
+
+<%= link_to "Add Client" , new_client_path %>

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  get 'task/tasks'
 
+  resources :clients # Does all the below job
+  resources :projects
+  
+  get 'task/tasks' # Only model backed can use resources
+  get 'task/incomplete'
+  get 'task/overdue'
   get 'sandbox/clients'
   get 'sandbox/projects'
 

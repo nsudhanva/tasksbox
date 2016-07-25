@@ -1,0 +1,16 @@
+<ul>
+	<% projects = Project.all %>	
+	<% projects.each do |project| %>
+	<li><%= project.name %></li>
+	<ul>
+		<% project.tasks.each do |task| %>
+			<% if task.is_completed %>				
+				
+			<% else %>				
+				<li><%= task.title %>, Incomplete, Due:<%= task.due_date.to_date %> </li> 
+				
+			<% end %>
+		<% end %>
+	</ul>
+	<% end %>
+</ul>

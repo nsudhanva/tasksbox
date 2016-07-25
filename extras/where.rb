@@ -13,8 +13,10 @@ Project.where('end_date < ?', Date.parse("2016-01-01"))
 #Find all the porjects started in the month of March
 Project.where('start_date >= ? AND start_date <= ?', Date.parse("2016-03-01"), Date.parse("2016-03-31"))
 
-#Alternative way
+#Alternative way............
 Project.where(start_date: Date.parse("2016-03-01")..Date.parse("2016-03-31"))
+
+Project.where('end_date IS NULL')
 
 # Transfer all projects belonging client ID 1 to Client ID 5
 client_1 = Project.where('client_id = ?', 1)

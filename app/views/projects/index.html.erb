@@ -1,0 +1,40 @@
+<h1>Listing all projects</h1>
+
+<% if @projects.empty? %>
+	<p> No projects found </p>
+<% else %>
+	<table border="5">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Estimated Budget</th>
+			<th>Client Name</th>
+			<th>Status</th>
+			<th>Tasks</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @projects.each_with_index do |project, index| %>
+		<tr>
+			<td><%= index + 1 %></td>
+			<td><%= project.name %></td>
+			<td><%= project.description %></td>
+			<td><%= project.start_date %></td>			
+			<td><%= project.end_date %></td>
+			<td><%= project.estimated_budget %></td>
+			<td><%= link_to "#{Client.find(project.client_id).name}", 
+					client_path(project.client_id) %></td>
+			<td><%= project.status %></td>
+			<td><%= link_to "Show", project_path(project.id) %></td>
+		</tr>
+		<% end %>						
+	</tbody>
+</table>
+<% end %>
+
+<%= link_to "Add Project" , new_project_path %>
