@@ -11,7 +11,9 @@
 			<th>Company</th>
 			<th>Mobile</th>
 			<th>Email</th>
+			<th>Total Projects</th>
 			<th>Actions</th>
+
 		</tr>
 	</thead>
 
@@ -19,11 +21,13 @@
 		<% @clients.each_with_index do |client, index| %>
 		<tr>
 			<td><%= index + 1 %></td>
-			<td><%= client.name.capitalize %></td>
+			<td><%= link_to client.name.capitalize , client_path(client.id)  %></td>
 			<td><%= client.company.capitalize %></td>
 			<td><%= client.mobile %></td>			
 			<td><%= client.email %></td>
+			<td><%= client.projects.size %></td>
 			<td><%= link_to "Show", client_path(client.id) %></td>
+
 		</tr>
 		<% end %>						
 	</tbody>

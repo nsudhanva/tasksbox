@@ -1,4 +1,10 @@
+<% notice %>
+
 <h1>Client details</h1>
+
+<%= link_to "Edit", edit_client_path(@client.id) %> |
+<%= link_to "Destroy", client_path(@client.id), data:
+	{method: :delete, confirm: "Are you sure?"} %>
 
 <h2>Name: <%= @client.name %></h2>
 <h3>Mobile: <%= @client.mobile %></h3>
@@ -11,7 +17,7 @@
 <h3> Total Projects: <%= @client.projects.size %></h3>
 <ul>
 	<% @client.projects.each do |project| %>
-	<li><%= project.name %></li>
+	<li><%= link_to "#{project.name}"  %></li>
 	<% end %>	
 </ul>
 <% end %>	

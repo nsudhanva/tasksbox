@@ -27,8 +27,14 @@
 			<td><%= project.start_date %></td>			
 			<td><%= project.end_date %></td>
 			<td><%= project.estimated_budget %></td>
-			<td><%= link_to "#{Client.find(project.client_id).name}", 
+
+			<% if project.client.nil? %>
+				<td>N/A</td>
+			<% else %>
+				<td><%= link_to "#{project.client.name}", 
 					client_path(project.client_id) %></td>
+			<% end %>
+			
 			<td><%= project.status %></td>
 			<td><%= link_to "Show", project_path(project.id) %></td>
 		</tr>
@@ -38,3 +44,4 @@
 <% end %>
 
 <%= link_to "Add Project" , new_project_path %>
+

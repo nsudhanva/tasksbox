@@ -21,6 +21,28 @@ class ClientsController < ApplicationController
 		@client = Client.find(params[:id])
 	end
 
+	def edit
+		@client = Client.find(params[:id])
+	end
+
+	def update
+		@client = Client.find(params[:id])
+
+		if @client.update_attributes(client_params)
+			redirect_to client_path(@client.id), notice: "Successfully updated"
+		else
+			render action: "new"
+		end
+	end
+
+	def destroy
+		@client = Client.find(params[:id])
+
+		if @client.destroy
+			redirect_to clients_path, notice: "Suvcessfully deleted"
+		end
+	end
+
 	private 
 		def client_params
 			params[:client].permit(:name, :company, :email, :mobile)
