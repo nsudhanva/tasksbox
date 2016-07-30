@@ -1,6 +1,10 @@
 class ProjectsController < ApplicationController
+
+	before_action :authenticate_user!
+
 	def index
-		@projects = Project.all		
+		@projects = current_user.projects
+		#@projects = Project.all		
 	end
 
 	def new
@@ -8,15 +12,19 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
-		@project = Project.find(params[:id])
+		begin
+			@project = current_user.projects.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			redirect_to projects_path, notice: "Record NOt Found"
+		end
 	end
 
 	def edit
-		@project = Project.find(params[:id])
+		@project = current_user.projects.find(params[:id])
 	end
 
 	def update
-		@project = Project.find(params[:id])
+		@project = current_user.projects.find(params[:id])
 
 		if @project.update_attributes(project_params)
 			redirect_to project_path(@project.id), notice: "Successfully updated"
@@ -27,7 +35,7 @@ class ProjectsController < ApplicationController
 	
 	def create
 		@project = Project.new(project_params)
-
+		@project.user_id = current_user.id
 		if @project.save
 			redirect_to projects_path, notice: "Succesfully ceated"
 		else
@@ -39,7 +47,7 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 
 		if @project.destroy
-			redirect_to clients_path, notice: "Suvcessfully deleted"
+			redirect_to clients_path, notice: "Sucessfully deleted"
 		end
 	end
 

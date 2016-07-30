@@ -11,7 +11,7 @@
 <% end %>
 
 <label>Clients</label><br>
-<%= f.collection_select :client_id, Client.all, :id, :name, prompt: "Select Client "%><br>
+<%= f.collection_select :client_id, current_user.clients, :id, :name, prompt: "Select Client "%><br>
 
 <label>Name</label><br>
 <%= f.text_field :name %><br>

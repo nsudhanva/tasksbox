@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :clients # Does all the below job
   resources :projects
   
+  root to: "clients#index"
+
   get 'task/tasks' # Only model backed can use resources
   get 'task/incomplete'
   get 'task/overdue'

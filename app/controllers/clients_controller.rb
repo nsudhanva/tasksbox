@@ -1,6 +1,11 @@
 class ClientsController < ApplicationController
+
+	#before_filter :authenticate_user!
+	before_action :authenticate_user!
+
 	def index
-		@clients = Client.all
+		@clients = current_user.clients
+		#@clients = Client.all
 	end
 
 	def new
@@ -10,6 +15,7 @@ class ClientsController < ApplicationController
 	def create
 		@client = Client.new(client_params)
 
+		@client.user_id = current_user.id 
 		if @client.save
 			redirect_to clients_path
 		else
@@ -18,15 +24,20 @@ class ClientsController < ApplicationController
 	end
 
 	def show
-		@client = Client.find(params[:id])
+		begin
+			@client = current_user.clients.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			redirect_to clients_path, notice: "Record Not Found"
+		end
 	end
 
 	def edit
-		@client = Client.find(params[:id])
+		@client = current_user.clients.find(params[:id])
 	end
 
 	def update
-		@client = Client.find(params[:id])
+		@client = current_user.clients.find(params[:id])
+		@client.user_id = current_user.id 
 
 		if @client.update_attributes(client_params)
 			redirect_to client_path(@client.id), notice: "Successfully updated"

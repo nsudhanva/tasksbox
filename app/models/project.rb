@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
 
 	belongs_to :client
 	has_many :tasks
+	belongs_to :projects
 
 	validates_presence_of :name, :description, :start_date, :end_date, :client_id, :status, :estimated_budget
 	validates_length_of :description, minimum: 10
