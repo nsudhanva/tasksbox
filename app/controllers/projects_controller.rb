@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
 
 	def index
 		@projects = current_user.projects
-		#@projects = Project.all		
+		#@projects = Project.all
+		
 	end
 
 	def new
@@ -12,6 +13,11 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
+		@project = Project.find(params[:id])
+		@task = Task.new
+		@completed_tasks = @project.tasks.where('is_completed = ?', true)
+		@incompleted_tasks = @project.tasks.where('is_completed = ?', false)
+				
 		begin
 			@project = current_user.projects.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
@@ -53,7 +59,7 @@ class ProjectsController < ApplicationController
 
 	private 
 		def project_params
-			params[:project].permit(:name, :description, :start_date, :end_date, :status, :client_id, :estimated_budget)
+			params[:project].permit(:name, :description, :start_date, :end_date, :status, :client_id, :estimated_budget, category_ids: [])
 			#Any data from form
 		end
 end

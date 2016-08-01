@@ -31,6 +31,14 @@
 <label>Estimated Budget</label><br>
 <%= f.text_field :estimated_budget %><br>
 
+<label>Select Categories</label><br>
+
+<%= f.collection_check_boxes :category_ids, current_user.categories, :id, :name do |b| %> 
+<%= b.check_box %> 
+<%= b.label %> 
+<br>
+<% end %>
+
 <%= f.submit %>
 
 <% end %>

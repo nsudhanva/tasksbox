@@ -1,8 +1,14 @@
 class Project < ActiveRecord::Base
 
+	#has_many :join_table
+	#has_many :associated_table, through: :join_table
+
+	has_many :project_categories
+	has_many :categories, through: :project_categories
+
 	belongs_to :client
 	has_many :tasks
-	belongs_to :projects
+	belongs_to :project
 
 	validates_presence_of :name, :description, :start_date, :end_date, :client_id, :status, :estimated_budget
 	validates_length_of :description, minimum: 10

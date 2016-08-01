@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :categories
   devise_for :users
   resources :clients # Does all the below job
   resources :projects
+  resources :tasks
   
   root to: "clients#index"
 

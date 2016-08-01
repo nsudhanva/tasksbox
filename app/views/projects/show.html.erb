@@ -3,8 +3,10 @@
 <%= link_to "Edit", edit_project_path(@project.id) %> |
 <%= link_to "Destroy", project_path(@project.id), data:
 	{method: :delete, confirm: "Are you sure?"} %>
+<br><br>	
 
 <h2>Project Name: <%= @project.name %></h2>
+<h3>Categories: <%= @project.categories.pluck(:name).join(", ") %> </h3>
 <h3>Description: <%= @project.description %></h3>
 <h3>Start Date: <%= @project.start_date %></h3>
 <h3>End Date: <%= @project.end_date %></h3>
@@ -17,7 +19,39 @@
 <h3> Total tasks: <%= @project.tasks.size %></h3>
 <ul>
 	<% @project.tasks.each do |task| %>
-	<li><%= tasks.name %></li>
+	<li><%= task.title %></li>
 	<% end %>	
 </ul>
-<% end %>	
+
+<h3>Completed Tasks</h3>
+<ul>
+	<% @completed_tasks.each do |task| %>
+	<li><%= task.title %></li>
+	<% end %>
+</ul>
+
+<h3>Incomplete Tasks</h3>
+<ul>
+	<% @incompleted_tasks.each do |task| %>
+	<li><%= task.title %></li>
+	<% end %>
+</ul>
+
+<% end %>
+
+<h3> Add Task</h3>	
+
+<%= form_for @task do |f| %>
+
+<%= f.hidden_field :project_id, value: @project.id %>
+<label>Title </label><br>
+<%= f.text_field :title %><br>
+
+<label>Dude Date</label><br>
+<%= f.date_select :due_date, order:[:day, :month, :year] %><br>
+
+<%= f.check_box :is_completed %> <label>Is completed? </label><br>
+
+<%= f.submit %>
+
+<% end %>
