@@ -1,4 +1,6 @@
-<h1>Project details</h1>
+<h1>Project details</h1><br>
+
+<%= link_to "Export to excel", project_path(@project.id, format: "xls") %><br><br>		
 
 <%= link_to "Edit", edit_project_path(@project.id) %> |
 <%= link_to "Destroy", project_path(@project.id), data:

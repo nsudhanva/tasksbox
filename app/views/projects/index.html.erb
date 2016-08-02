@@ -1,5 +1,19 @@
 <h1>Listing all projects</h1>
 
+<b> Filter by: 
+	<%= link_to "New", projects_path(status: "New") %> |
+	<%= link_to "On-going", projects_path(status: "On-going") %> |
+	<%= link_to "Completed", projects_path(status: "Completed") %> |
+	<%= link_to "All", projects_path %> 
+</b><br>
+
+<b> Filter by: 
+	<% current_user.clients.each do |client| %>
+		
+		<%= link_to "#{client.name}", projects_path(id: "#{client.id}") %> |
+	<% end %>
+</b>
+
 <% if @projects.empty? %>
 	<p> No projects found </p>
 <% else %>

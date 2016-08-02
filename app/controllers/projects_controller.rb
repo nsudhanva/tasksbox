@@ -3,9 +3,14 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@projects = current_user.projects
+		if params[:status]
+			@projects = current_user.projects.where('status = ?', params[:status])
+		elsif params[:id]
+			@projects = current_user.projects.where('client_id = ?', params[:id])
+		else			
+			@projects = current_user.projects
 		#@projects = Project.all
-		
+		end
 	end
 
 	def new

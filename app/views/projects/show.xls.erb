@@ -1,0 +1,47 @@
+<table border="5">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Estimated Budget</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td><%= @project.name %></td>
+			<td><%= @project.categories.pluck(:name).join(", ") %> </td>
+			<td><%= @project.description %></td>
+			<td><%= @project.start_date %></td>
+			<td><%= @project.end_date %></td>
+			<td><%= @project.estimated_budget %></td>
+			<td><%= @project.status %></td>
+		</tr>
+	</tbody>
+</table>
+
+<table border="2">
+<h3> Total tasks: <%= @project.tasks.size %></h3>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Due Date</th>
+			<th>Completed</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @project.tasks.each do |task| %>
+		<tr>
+			<td><%= task.title %></td>
+			<td><%= task.due_date.to_date %></td>
+			<td><%= task.is_completed ? "Yes" : "No" %></td>
+		<tr>
+		<% end %>
+	</tbody>
+		
+</table>
