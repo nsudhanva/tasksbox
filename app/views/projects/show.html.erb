@@ -25,17 +25,23 @@
 	<% end %>	
 </ul>
 
+
+
 <h3>Completed Tasks</h3>
 <ul>
 	<% @completed_tasks.each do |task| %>
-	<li><%= task.title %></li>
+	<li><%= task.title %> - 
+		<%= link_to "Mark as incomplete", tasks_mark_as_incomplete_path(task_id: task.id) %>
+	</li>
 	<% end %>
 </ul>
 
 <h3>Incomplete Tasks</h3>
 <ul>
 	<% @incompleted_tasks.each do |task| %>
-	<li><%= task.title %></li>
+	<li><%= task.title %> -		
+		<%= link_to "Mark as complete", tasks_mark_as_complete_path(task_id: task.id) %>
+	</li>
 	<% end %>
 </ul>
 
