@@ -1,0 +1,10 @@
+<p>Hi <%= @task.project.client.name %>,<br>
+
+	The task (<%= @task.title %>) belonging to  <%= @task.project.name %> has been re-opened. It was due on <%= @task.due_date.to_date %> <br>
+
+	New due date is <%= @task.due_date.to_date + 2.days %> <br>
+	Regards,<br>
+	Team Taskbox <br>
+	<!-- A css/image can be attached here -->
+
+</p>
