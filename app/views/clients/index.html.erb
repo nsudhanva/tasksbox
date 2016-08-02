@@ -1,39 +1,60 @@
-<h1>Listing all clients</h1>	
+<div class="row">
+	<div class="col-md-8">
+		<div class="page-header">
+			<h2>Listing all clients</h2>	
+		</div>
 
-<%= link_to "Export to excel", clients_path(format: "xls") %><br>											
 
-<% if @clients.empty? %>
-	<p> No records found </p>
-<% else %>
-	<table border="5">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Name</th>
-			<th>Company</th>
-			<th>Mobile</th>
-			<th>Email</th>
-			<th>Total Projects</th>
-			<th>Actions</th>
 
-		</tr>
-	</thead>
+		<%= link_to clients_path(format: "xls"), class: "btn btn-info pull-right" do %><br>
+			<span class="glyphicon glyphicon-download-alt"></span> Export to Excel
+		<% end %>											
 
-	<tbody>
-		<% @clients.each_with_index do |client, index| %>
-		<tr>
-			<td><%= index + 1 %></td>
-			<td><%= link_to client.name.capitalize , client_path(client.id)  %></td>
-			<td><%= client.company.capitalize %></td>
-			<td><%= client.mobile %></td>			
-			<td><%= client.email %></td>
-			<td><%= client.projects.size %></td>
-			<td><%= link_to "Show", client_path(client.id) %></td>
+		<% if @clients.empty? %>
+			<p> No records found </p>
+		<% else %>
+			<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Company</th>
+					<th>Mobile</th>
+					<th>Email</th>
+					<th>Total Projects</th>
+					<th>Actions</th>
 
-		</tr>
-		<% end %>						
-	</tbody>
-</table>
-<% end %>
+				</tr>
+			</thead>
 
-<%= link_to "Add Client" , new_client_path %>
+			<tbody>
+				<% @clients.each_with_index do |client, index| %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= link_to client.name.capitalize , client_path(client.id)  %></td>
+					<td><%= client.company.capitalize %></td>
+					<td><%= client.mobile %></td>			
+					<td><%= client.email %></td>
+					<td><%= client.projects.size %></td>
+					<td>
+						<%= link_to client_path(client.id) do %>
+							<span class="glyphicon glyphicon-eye-open"></span>
+						<% end %>
+						
+					</td>
+
+				</tr>
+				<% end %>						
+			</tbody>
+		</table>
+		<% end %>
+
+		<%= link_to "Add Client" , new_client_path, class: "btn btn-primary" %>
+	</div>
+	<div class="col-md-4">
+		<div class="page-header">
+			<h2>Some stats</h2>
+		</div>
+	</div>
+	
+</div>

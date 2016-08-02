@@ -1,61 +1,78 @@
-<h1>Listing all projects</h1>
+<div class="row">
+	<div class="col-md-8">
 
-<b> Filter by: 
-	<%= link_to "New", projects_path(status: "New") %> |
-	<%= link_to "On-going", projects_path(status: "On-going") %> |
-	<%= link_to "Completed", projects_path(status: "Completed") %> |
-	<%= link_to "All", projects_path %> 
-</b><br>
+		<div class="page-header">
+			<h2>Listing all projects</h2>	
+		</div>
 
-<b> Filter by: 
-	<% current_user.clients.each do |client| %>
-		
-		<%= link_to "#{client.name}", projects_path(id: "#{client.id}") %> |
-	<% end %>
-</b>
+		<b> Filter by: 
+			<%= link_to "New", projects_path(status: "New") %> |
+			<%= link_to "On-going", projects_path(status: "On-going") %> |
+			<%= link_to "Completed", projects_path(status: "Completed") %> |
+			<%= link_to "All", projects_path %> 
+		</b><br>
 
-<% if @projects.empty? %>
-	<p> No projects found </p>
-<% else %>
-	<table border="5">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-			<th>Estimated Budget</th>
-			<th>Client Name</th>
-			<th>Status</th>
-			<th>Tasks</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @projects.each_with_index do |project, index| %>
-		<tr>
-			<td><%= index + 1 %></td>
-			<td><%= project.name %></td>
-			<td><%= project.description %></td>
-			<td><%= project.start_date %></td>			
-			<td><%= project.end_date %></td>
-			<td><%= project.estimated_budget %></td>
-
-			<% if project.client.nil? %>
-				<td>N/A</td>
-			<% else %>
-				<td><%= link_to "#{project.client.name}", 
-					client_path(project.client_id) %></td>
+		<b> Filter by: 
+			<% current_user.clients.each do |client| %>
+				
+				<%= link_to "#{client.name}", projects_path(id: "#{client.id}") %> |
 			<% end %>
-			
-			<td><%= project.status %></td>
-			<td><%= link_to "Show", project_path(project.id) %></td>
-		</tr>
-		<% end %>						
-	</tbody>
-</table>
-<% end %>
+		</b>
 
-<%= link_to "Add Project" , new_project_path %>
+		<% if @projects.empty? %>
+			<p> No projects found </p>
+		<% else %>
+			<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Estimated Budget</th>
+					<th>Client Name</th>
+					<th>Status</th>
+					<th>Tasks</th>
+				</tr>
+			</thead>
 
+			<tbody>
+				<% @projects.each_with_index do |project, index| %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= project.name %></td>
+					<td><%= project.description %></td>
+					<td><%= project.start_date %></td>			
+					<td><%= project.end_date %></td>
+					<td><%= project.estimated_budget %></td>
+
+					<% if project.client.nil? %>
+						<td>N/A</td>
+					<% else %>
+						<td><%= link_to "#{project.client.name}", 
+							client_path(project.client_id) %></td>
+					<% end %>
+					
+					<td><%= project.status %></td>
+					<td><%= link_to project_path(project.id) do %>
+						<span class="glyphicon glyphicon-eye-open"></span>
+						<% end %>						
+					</td>
+				</tr>
+				<% end %>						
+			</tbody>
+		</table>
+		<% end %>
+
+		<%= link_to "Add Project" , new_project_path, class: "btn btn-primary" %>
+
+	</div>
+
+	<div class="col-md-4">
+		<div class="page-header">
+			<h2>Some stats</h2>
+		</div>
+	</div>
+	
+</div>

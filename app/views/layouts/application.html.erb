@@ -5,32 +5,52 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  						
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  						
 </head>
 <body>
 
-<h3>Tasks BOx</h3>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">TasksBox</a>
+    </div>
+    <ul class="nav navbar-nav">      
+      <li class="active"><%= link_to "Projects", projects_path %></li>
+      <li><%= link_to "Clients", clients_path %></li> 
+      <li><%= link_to "Categories", categories_path %> </li> 
+    </ul>
+  </div>
+</nav>
 
-<%= link_to "Projects", projects_path %> |
-<%= link_to "Clients", clients_path %> |
-<%= link_to "Categories", categories_path %> <br><br>
+<div class="container">
 
-<% if user_signed_in? %>
-	Hello! <%= current_user.email %> |
+	<% if user_signed_in? %>
+		Hello! <%= current_user.email %> |
 
-	<%= link_to "Edit Account", edit_user_registration_path %> |
-	<%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% else %>
+		<%= link_to "Edit Account", edit_user_registration_path %> |
+		<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+	<% else %>
 
-	<%= link_to "Login", new_user_session_path %> |
-	<%= link_to "Sign Up", new_user_registration_path %>
+		<%= link_to "Login", new_user_session_path %> |
+		<%= link_to "Sign Up", new_user_registration_path %>
 
-<% end %>
+	<% end %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
 
-<%= yield %>
+	<%= yield %>
+</div>
+
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>
