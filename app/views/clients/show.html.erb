@@ -13,9 +13,9 @@
 	No projects found
 <% else %>
 <h3> Total Projects: <%= @client.projects.size %></h3>
-<ul>
+<ul class="list-group">
 	<% @client.projects.each do |project| %>
-	<li><%= link_to "#{project.name}"  %></li>
+	<li class="list-group-item"><%= link_to "#{project.name}"  %></li>
 	<% end %>	
 </ul>
 <% end %>	
@@ -27,4 +27,14 @@
 <% end %>
 
 <%= timeline timeline_array %>
+
+<% all_tasks = Task.joins(:project).where("projects.client_id = ?", @client.id) %>
+
+<h3 class="page-header">All tasks, <%= all_tasks.size %> tasks</h3>
+
+<ul class="list-group">
+	<% all_tasks.each do |task| %>
+		<li class="list-group-item"><%= task.title %></li>
+	<% end %>
+</ul>
 
