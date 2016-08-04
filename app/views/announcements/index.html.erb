@@ -19,12 +19,15 @@
 
 <%= f.hidden_field :user_id, value: current_user.id %>
 
-<label>Title </label><br>
-<%= f.text_field :title %><br>
-
-<label>Body </label><br>
-<%= f.text_area :body %><br>
-
-<%= f.submit %>
+	<div class="form-group">
+		<label>Title </label><br>
+		<%= f.text_field :title %><br>
+	</div>
+	<div class="form-group">			
+		<label>Body </label><br>
+		<%= f.text_area :body %><br>
+	</div>
+	
+	<%= f.submit "Create", class: "btn btn-primary" %>
 
 <% end %>
