@@ -12,36 +12,69 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">TasksBox</a>
-    </div>
-    <ul class="nav navbar-nav">      
-      <li><%= link_to "Projects", projects_path %></li>
-      <li><%= link_to "Clients", clients_path %></li> 
-      <li><%= link_to "Categories", categories_path %> </li> 
-      <li><%= link_to "Announcements", announcements_path %> </li> 
-    </ul>
-  </div>
-</nav>
+ <% if user_signed_in? %>     
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">TasksBox</a>
+        </div>
+        <ul class="nav navbar-nav">      
+          <li><%= link_to projects_path do %>
+              Projects
+              <span class="badge"><%= current_user.projects.size %></span>
+              <% end %>
+          </li>
+
+          <li><%= link_to clients_path do %>
+              Clients
+              <span class="badge"><%= current_user.clients.size %></span>
+              <% end %>
+          </li> 
+          
+          <li><%= link_to "Categories", categories_path %> </li> 
+          <li><%= link_to "Announcements", announcements_path %> </li> 
+        </ul>
+        <ul class="nav navbar-nav navbar-right">      
+
+            <li>        
+              <%= link_to "Edit Account", edit_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            </li>
+
+          </ul>
+      </div>
+    </nav>
+    <% else %>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">TasksBox</a>
+        </div>
+        <ul class="nav navbar-nav">      
+          
+        </ul>
+        <ul class="nav navbar-nav navbar-right">      
+          
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+
+          </ul>
+      </div>
+    </nav>
+    <% end %>
 
 <div class="container after-nav">
 
-	<% if user_signed_in? %>
-		Hello! <%= current_user.email %> |
-
-		<%= link_to "Edit Account", edit_user_registration_path %> |
-		<%= link_to "Logout", destroy_user_session_path, method: :delete %>
-	<% else %>
-
-		<%= link_to "Login", new_user_session_path %> |
-		<%= link_to "Sign Up", new_user_registration_path %>
-
-	<% end %>
-
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+  <% if notice %>
+    <p class="notice alert alert-success"><%= notice %></p>
+  <% end %>
+  	
+  <% if alert %>
+    <p class="alert alert alert-danger"><%= alert %></p>
+  <% end %>
+  	
 
 	<%= yield %>
 </div>

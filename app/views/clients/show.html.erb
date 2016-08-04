@@ -4,10 +4,10 @@
 <%= link_to "Destroy", client_path(@client.id), data:
 	{method: :delete, confirm: "Are you sure?"} %>
 
-<h2>Name: <%= @client.name %></h2>
-<h3>Mobile: <%= @client.mobile %></h3>
-<h3>Company: <%= @client.company %></h3>
-<h3>Email: <%= @client.email %></h3>
+<h3>Name: <%= @client.name %></h3>
+<h4>Mobile: <%= @client.mobile %></h4>
+<h4>Company: <%= @client.company %></h4>
+<h4>Email: <%= @client.email %></h4>
 
 <% if @client.projects.empty? %>
 	No projects found
@@ -29,6 +29,8 @@
 <%= timeline timeline_array %>
 
 <% all_tasks = Task.joins(:project).where("projects.client_id = ?", @client.id) %>
+
+<!-- Task.where(project_id: @client.project_ids.size)-->
 
 <h3 class="page-header">All tasks, <%= all_tasks.size %> tasks</h3>
 

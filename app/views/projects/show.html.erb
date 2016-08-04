@@ -1,36 +1,37 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<h2 class="page-header">Project details</h2><br>
+<div class="row">
+	<div class="col-md-6">
+		<h2 class="page-header">Project details</h2><br>
 
-			<%= link_to "Export to excel", project_path(@project.id, format: "xls") %><br><br>		
+		<%= link_to "Export to excel", project_path(@project.id, format: "xls") %><br><br>		
 
-			<%= link_to "Edit", edit_project_path(@project.id) %> |
-			<%= link_to "Destroy", project_path(@project.id), data:
-				{method: :delete, confirm: "Are you sure?"} %>
-			<br><br>	
+		<%= link_to "Edit", edit_project_path(@project.id) %> |
+		<%= link_to "Destroy", project_path(@project.id), data:
+			{method: :delete, confirm: "Are you sure?"} %>
+		<br><br>	
 
-			<h3>Project Name: <%= @project.name %></h3>
-			<h4>Categories: <%= @project.categories.pluck(:name).join(", ") %> </h4>
-			<h4>Description: <%= @project.description %></h4>
-			<h4>Start Date: <%= @project.start_date %></h4>
-			<h4>End Date: <%= @project.end_date %></h4>
-			<h4>Estimated Budget: <%= @project.estimated_budget %></h4>
-			<h4>Status: <%= @project.status %></h4>
+		<h3>Project Name: <%= @project.name %></h3>
+		<h4>Categories: <%= @project.categories.pluck(:name).join(", ") %> </h4>
+		<h4>Description: <%= @project.description %></h4>
+		<h4>Start Date: <%= @project.start_date %></h4>
+		<h4>End Date: <%= @project.end_date %></h4>
+		<h4>Estimated Budget: <%= @project.estimated_budget %></h4>
+		<h4>Status: <%= @project.status %></h4>
 
-			<% if @project.tasks.empty? %>
-				No tasks found
-			<% else %>
-			<h3> Total tasks: <%= @project.tasks.size %></h3>
-			<ul class="list-group">
-				<% @project.tasks.each do |task| %>
-				<li class="list-group-item"><%= task.title %></li>
-				<% end %>	
-			</ul>
+		<% if @project.tasks.empty? %>
+			No tasks found
+		<% else %>
+		<h3> Total tasks: <%= @project.tasks.size %></h3>
+		<ul class="list-group">
+			<% @project.tasks.each do |task| %>
+			<li class="list-group-item"><%= task.title %></li>
+			<% end %>	
+		</ul>
 
+		<h3>Completed Tasks</h3>
 
-
-			<h3>Completed Tasks</h3>
+		<% if @completed_tasks.empty? %>
+			<h4>No completed tasks</h4>
+		<% else %>
 			<ul  class="list-group">
 				<% @completed_tasks.each do |task| %>
 				<li  class="list-group-item"><%= task.title %> - 
@@ -38,45 +39,57 @@
 				</li>
 				<% end %>
 			</ul>
+		<% end %>			
 
-			<h3>Incomplete Tasks</h3>
-			<ul  class="list-group">
-				<% @incompleted_tasks.each do |task| %>
-				<li  class="list-group-item"><%= task.title %> -		
-					<%= link_to "Mark as complete", tasks_mark_as_complete_path(task_id: task.id) %>
-				</li>
+		<h3>Incomplete Tasks</h3>
+		<% if @incompleted_tasks.empty? %>
+			<h4><li>No incomplete tasks</li></h4>
+		<% else %>
+		<ul  class="list-group">
+			<% @incompleted_tasks.each do |task| %>
+			<li  class="list-group-item"><%= task.title %> -		
+				<%= link_to "Mark as complete", tasks_mark_as_complete_path(task_id: task.id) %>
+			</li>
+			<% end %>
+		</ul>
+		<% end %>		
+		<% end %>
+		
+	</div>
+
+	<div class="col-md-6">
+
+		<% data = {} 
+				data["Completed"] = @project.tasks.where('is_completed = ?', true).count
+				data["Incomplete"] = @project.tasks.where('is_completed = ?', false).count		
+		%>
+							
+		<%= pie_chart(data) %>
+
+		<div style="text-align: center; margin-top: 100px;">
+			<button data-toggle="collapse" data-target="#demo" 
+				class="btn btn-primary" style="text-align: center;">Add Task</button>
+
+			<div id="demo" class="collapse">
+				<h3> Add Task</h3>	
+
+				<%= form_for @task do |f| %>
+
+				<%= f.hidden_field :project_id, value: @project.id %>
+				<label>Title </label><br>
+				<%= f.text_field :title %><br>
+
+				<label>Dude Date</label><br>
+				<%= f.date_select :due_date, order:[:day, :month, :year] %><br>
+
+				<%= f.check_box :is_completed %> <label>Is completed? </label><br>
+
+				<%= f.submit %>
+
 				<% end %>
-			</ul>
-
-			<% end %>
-
-			<h3> Add Task</h3>	
-
-			<%= form_for @task do |f| %>
-
-			<%= f.hidden_field :project_id, value: @project.id %>
-			<label>Title </label><br>
-			<%= f.text_field :title %><br>
-
-			<label>Dude Date</label><br>
-			<%= f.date_select :due_date, order:[:day, :month, :year] %><br>
-
-			<%= f.check_box :is_completed %> <label>Is completed? </label><br>
-
-			<%= f.submit %>
-
-			<% end %>
-		</div>
-
-		<div class="col-md-6">
-
-			<% data = {} 
-					data["Completed"] = @project.tasks.where('is_completed = ?', true).count
-					data["Incomplete"] = @project.tasks.where('is_completed = ?', false).count		
-			%>
-								
-			<%= pie_chart(data) %>
+			</div>
 
 		</div>
+			
 	</div>
 </div>
