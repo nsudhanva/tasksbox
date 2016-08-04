@@ -8,35 +8,47 @@
 </ul>
 <% end %>
 
-<label>Clients</label><br>
-<%= f.collection_select :client_id, current_user.clients, :id, :name, prompt: "Select Client "%><br>
+	<div class="form-group">
+		<label>Clients</label><br>
+		<%= f.collection_select :client_id, current_user.clients, :id, :name, prompt: "Select Client "%><br>
+	</div>
+	<div class="form-group">
+		<label>Name</label><br>
+		<%= f.text_field :name %><br>
+	</div>
+	<div class="form-group">
+		<label>Description</label><br>
+		<%= f.text_area :description %><br>
+	</div>
+	<div class="form-group">
+		<label>Start Date</label><br>
+		<%= f.date_select :start_date, order: [:day, :month, :year] %><br>
+	</div>
+	<div class="form-group">
+		<label>End Date</label><br>
+		<%= f.date_select :end_date, order: [:day, :month, :year] %><br>
+	</div>
+	<div class="form-group">
+		<label>Status</label><br>
+		<%= f.select :status, ["New", "On-going", "Completed"], prompt: "Select Status " %><br>
+	</div>
+	<div class="form-group">
+		<label>Estimated Budget</label><br>
+	<%= f.text_field :estimated_budget %><br>
+	</div>
+	<div class="form-group">
+		<label>Select Categories</label><br>
 
-<label>Name</label><br>
-<%= f.text_field :name %><br>
+		<%= f.collection_check_boxes :category_ids, current_user.categories, :id, :name do |b| %> 
+		<%= b.check_box %> 
+		<%= b.label %> 
+		<% end %>
 
-<label>Description</label><br>
-<%= f.text_area :description %><br>
+	</div>
+	
+	<div class="form-group">	
+		<%= f.submit "Submit", class: "btn btn-primary" %>
+	</div>
 
-<label>Start Date</label><br>
-<%= f.date_select :start_date, order: [:day, :month, :year] %><br>
-
-<label>End Date</label><br>
-<%= f.date_select :end_date, order: [:day, :month, :year] %><br>
-
-<label>Status</label><br>
-<%= f.select :status, ["New", "On-going", "Completed"], prompt: "Select Status " %><br>
-
-<label>Estimated Budget</label><br>
-<%= f.text_field :estimated_budget %><br>
-
-<label>Select Categories</label><br>
-
-<%= f.collection_check_boxes :category_ids, current_user.categories, :id, :name do |b| %> 
-<%= b.check_box %> 
-<%= b.label %> 
-<br>
-<% end %>
-
-<%= f.submit %>
 
 <% end %>

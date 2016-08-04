@@ -8,18 +8,36 @@
 </ul>
 <% end %>
 
-<label>Name</label><br>
-<%= f.text_field :name %><br>
+<div class="form-group">
+	<label>Name</label><br>
+	<%= f.text_field :name %><br>
+</div>
 
-<label>Company</label><br>
-<%= f.text_field :company %><br>
+<div class="form-group">	
+	<label>Company</label><br>
+	<%= f.text_field :company %><br>
+</div>
 
-<label>Mobile</label><br>
-<%= f.text_field :mobile %><br>
+<div class="form-group">
+	<label>Mobile</label><br>
+	<%= f.text_field :mobile %><br>
+</div>
 
-<label>E-mail</label><br>
-<%= f.email_field :email %><br>
+<div class="form-group">
+	<label>E-mail</label><br>
+	<%= f.email_field :email %><br>
+</div>
 
-<%= f.submit %>
-<% end %>
+<div class="form-group">
+	<%= f.submit "Submit", class: "btn btn-primary" %>
+	<% end %>
+</div>
+	
+
+
+	
+
+	
+
+	
 
