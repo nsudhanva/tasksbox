@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'announcements/index'
+
+  get 'announcements/new'
+
+  get 'announcements/create'
+
+
   get 'tasks/mark_as_complete'
   get 'tasks/mark_as_incomplete'
   resources :categories
@@ -7,6 +14,7 @@ Rails.application.routes.draw do
   resources :clients # Does all the below job
   resources :projects
   resources :tasks
+  resources :announcements
   
   root to: "clients#index"
 

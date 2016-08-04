@@ -29,6 +29,9 @@ class ClientsController < ApplicationController
 		rescue ActiveRecord::RecordNotFound
 			redirect_to clients_path, notice: "Record Not Found"
 		end
+
+		@projects = current_user.projects
+		@tasks = current_user.projects
 	end
 
 	def edit

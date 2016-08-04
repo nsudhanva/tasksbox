@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ .after-nav{
+ 	margin-top: 75px;
+ }

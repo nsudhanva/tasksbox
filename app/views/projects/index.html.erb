@@ -72,6 +72,25 @@
 	<div class="col-md-4">
 		<div class="page-header">
 			<h2>Some stats</h2>
+
+			<div>
+				<% data = {} 
+					data["New"] = @projects.where('status = ?', "New").count
+					data["On-going"] = @projects.where('status = ?', "On-going").count
+					data["Completed"] = @projects.where('status = ?', "Completed").count
+				%>
+
+				<% data2 = {} 
+					statuses = @projects.pluck(:status).uniq
+					statuses.each do |status|
+						data[status] = @projects.where("status = ?", status).size
+					end
+				%>
+					
+				<%= pie_chart(data) %>
+					
+				<%= pie_chart(data2) %>
+			</div>		
 		</div>
 	</div>
 	

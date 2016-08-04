@@ -19,3 +19,12 @@
 	<% end %>	
 </ul>
 <% end %>	
+
+<% timeline_array = [] %>
+
+<% @projects.each do |project| %>
+	<% timeline_array.push([project.name, project.start_date, project.end_date]) %>
+<% end %>
+
+<%= timeline timeline_array %>
+

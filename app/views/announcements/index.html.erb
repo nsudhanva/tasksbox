@@ -1,0 +1,30 @@
+<h1 class="page-header">Announcements</h1>
+
+<% if @announcements.empty? %>
+	<h3>No announcements</h3>
+<% else %>
+	<ul>
+		<% @announcements.each do |announcement| %>
+			<li><%= announcement.title %></li>
+			<ul>
+				<li><%= announcement.body %></li>
+			</ul>
+		<% end %>
+	</ul>
+<% end %>
+
+<h3> Add Announcement</h3>	
+
+<%= form_for @announcement do |f| %>
+
+<%= f.hidden_field :user_id, value: current_user.id %>
+
+<label>Title </label><br>
+<%= f.text_field :title %><br>
+
+<label>Body </label><br>
+<%= f.text_area :body %><br>
+
+<%= f.submit %>
+
+<% end %>
