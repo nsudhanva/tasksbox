@@ -19,21 +19,45 @@
           <a class="navbar-brand" href="/">TasksBox</a>
         </div>
         <ul class="nav navbar-nav">      
-          <li><%= link_to projects_path do %>
+          <li 
+            <% if controller.controller_name == "projects" %>
+                class="active"
+            <% end %>>
+
+            <%= link_to projects_path do %>
               Projects
               <span class="badge"><%= current_user.projects.size %></span>
               <% end %>
           </li>
 
-          <li><%= link_to clients_path do %>
+          <li
+            <% if controller.controller_name == "clients" %>
+                class="active"
+            <% end %>>
+
+            <%= link_to clients_path do %>
               Clients
               <span class="badge"><%= current_user.clients.size %></span>
               <% end %>
           </li> 
           
-          <li><%= link_to "Categories", categories_path %> </li> 
-          <li><%= link_to "Announcements", announcements_path %> </li> 
+          <li
+
+            <% if controller.controller_name == "categories" %>
+                class="active"
+            <% end %>>
+
+            <%= link_to "Categories", categories_path %> 
+          </li> 
+
+          <li
+
+            <% if controller.controller_name == "announcements" %>
+                class="active"
+            <% end %>><%= link_to "Announcements", announcements_path %> 
+          </li> 
         </ul>
+        
         <ul class="nav navbar-nav navbar-right">      
 
             <li>        
@@ -43,7 +67,7 @@
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             </li>
 
-          </ul>
+        </ul>
       </div>
     </nav>
     <% else %>

@@ -8,6 +8,6 @@ class AnnounceIt < ApplicationMailer
   def announce(announcement, user)
 	  @announcement = announcement
 	  @user = user
-    mail to:  # TODO
+    mail to: Client.all.pluck(:email)
 	end
 end

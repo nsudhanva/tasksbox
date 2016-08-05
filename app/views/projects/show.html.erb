@@ -2,7 +2,8 @@
 	<div class="col-md-6">
 		<h2 class="page-header">Project details</h2><br>
 
-		<%= link_to "Export to excel", project_path(@project.id, format: "xls") %><br><br>		
+		<%= link_to "Export to excel", project_path(@project.id, format: "xls"), 
+			class: "btn btn-primary" %><br><br>		
 
 		<%= link_to "Edit", edit_project_path(@project.id) %> |
 		<%= link_to "Destroy", project_path(@project.id), data:
@@ -49,6 +50,7 @@
 			<% @incompleted_tasks.each do |task| %>
 			<li  class="list-group-item"><%= task.title %> -		
 				<%= link_to "Mark as complete", tasks_mark_as_complete_path(task_id: task.id) %>
+
 			</li>
 			<% end %>
 		</ul>
@@ -97,8 +99,17 @@
 
 					<% end %>
 			</div>
-
 		</div>
-			
+
+
+		<% task_percentage = (@completed_tasks.size.to_f/@project.tasks.size.to_f) * 100 %>	
+
+		<h4  style="margin-top: 100px">Progress</h4>
+		<div class="progress">
+		  <div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" aria-valuenow="70"
+		  aria-valuemin="0" aria-valuemax="100" style="width: <%= task_percentage.to_f %>%;">
+		    	<%= task_percentage %>%
+		  </div>
+		</div>	
 	</div>
 </div>

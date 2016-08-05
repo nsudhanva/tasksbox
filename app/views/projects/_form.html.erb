@@ -1,12 +1,14 @@
-	<%= form_for @project do |f| %>
-<% if @project.errors.any? %>
-<h4>These errors prohibited the form from being saved: </h4>
-<ul style="color:red">
-	<% @project.errors.full_messages.each do |msg| %>
-		<li><%= msg %></li>
+<%= form_for @project do |f| %>
+<div class="alert alert-danger">
+	<% if @project.errors.any? %>
+	<h4>These errors prohibited the form from being saved: </h4>
+	<ul style="color:red">
+		<% @project.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ul>
 	<% end %>
-</ul>
-<% end %>
+</div>
 
 	<div class="form-group">
 		<label>Clients</label><br>
