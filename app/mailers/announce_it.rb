@@ -8,6 +8,6 @@ class AnnounceIt < ApplicationMailer
   def announce(announcement, user)
 	  @announcement = announcement
 	  @user = user
-    mail to: "nsudhanva@gmail.com"	 	
+    mail to:  # TODO
 	end
 end

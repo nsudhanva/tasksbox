@@ -2,6 +2,7 @@ class AnnouncementsController < ApplicationController
   def index
   	@announcements = current_user.announcements
   	@announcement = Announcement.new
+    @user = User.first
   end
 
   def new
