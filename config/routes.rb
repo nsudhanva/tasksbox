@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'announcements/new'
 
   get 'announcements/create'
-
+  get 'announcements/announce_it'
 
   get 'tasks/mark_as_complete'
   get 'tasks/mark_as_incomplete'

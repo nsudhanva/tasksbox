@@ -18,6 +18,7 @@
 <%= form_for @announcement do |f| %>
 
 <%= f.hidden_field :user_id, value: current_user.id %>
+<%= f.hidden_field :id, value: @announcement.id %>
 
 	<div class="form-group">
 		<label>Title </label><br>

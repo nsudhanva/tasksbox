@@ -13,9 +13,8 @@ class AnnouncementsController < ApplicationController
   	@announcement.user_id = current_user.id 
 
   	if @announcement.save
-       announcement = Announcement.find(params[:id])
+      AnnounceIt.announce(@announcement, current_user).deliver!
   		redirect_to announcements_path, notice: "Successfully created"
-  		AnnounceIt.completed(announcement, current_user).deliver!
   	else
   		render action: "new"
   	end
