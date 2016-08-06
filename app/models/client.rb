@@ -29,8 +29,11 @@ class Client < ActiveRecord::Base
 
 	private
 		def destroy_all_projects
-			projects = Project.all.where('client_id = ?', self.id)
-			projects.delete_all
+			self.projects.each do |project|
+				project.destroy
+			end
+			#projects = Project.all.where('client_id = ?', self.id)
+			#projects.delete_all
 		end
 	
 end

@@ -31,7 +31,11 @@ class Project < ActiveRecord::Base
 	end
 
 	def destroy_all_tasks
-		tasks = Task.all.where('project_id = ?', self.id)
-		tasks.delete_all
+		self.tasks.each do |task|
+			task.destroy
+		end
+
+		#tasks = Task.all.where('project_id = ?', self.id)
+		#tasks.delete_all
 	end
 end
