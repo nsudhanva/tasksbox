@@ -1,6 +1,12 @@
 <div class="row">
 	<div class="col-md-8">
 
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $('#projectsTable').DataTable();
+			});
+		</script>
+
 		<div class="page-header">
 			<h2>Listing all projects</h2>	
 		</div>
@@ -22,50 +28,53 @@
 		<% if @projects.empty? %>
 			<p> No projects found </p>
 		<% else %>
-			<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Start Date</th>
-					<th>End Date</th>
-					<th>Estimated Budget</th>
-					<th>Client Name</th>
-					<th>Status</th>
-					<th>Tasks</th>
-				</tr>
-			</thead>
+			<div class="table-responsive" style="margin-top: 20px">
+				<table class="table table-striped" id="projectsTable">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Estimated Budget</th>
+							<th>Client Name</th>
+							<th>Status</th>
+							<th>Tasks</th>
+						</tr>
+					</thead>
 
-			<tbody>
-				<% @projects.each_with_index do |project, index| %>
-				<tr>
-					<td><%= index + 1 %></td>
-					<td><%= project.name %></td>
-					<td><%= project.description %></td>
-					<td><%= project.start_date %></td>			
-					<td><%= project.end_date %></td>
-					<td><%= project.estimated_budget %></td>
+					<tbody>
+						<% @projects.each_with_index do |project, index| %>
+						<tr>
+							<td><%= index + 1 %></td>
+							<td><%= project.name %></td>
+							<td><%= project.description %></td>
+							<td><%= project.start_date %></td>			
+							<td><%= project.end_date %></td>
+							<td><%= project.estimated_budget %></td>
 
-					<% if project.client.nil? %>
-						<td>N/A</td>
-					<% else %>
-						<td><%= link_to "#{project.client.name}", 
-							client_path(project.client_id) %></td>
-					<% end %>
-					
-					<td><%= project.status %></td>
-					<td><%= link_to project_path(project.id) do %>
-						<span class="glyphicon glyphicon-eye-open"></span>
+							<% if project.client.nil? %>
+								<td>N/A</td>
+							<% else %>
+								<td><%= link_to "#{project.client.name}", 
+									client_path(project.client_id) %></td>
+							<% end %>
+							
+							<td><%= project.status %></td>
+							<td><%= link_to project_path(project.id) do %>
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<% end %>						
+							</td>
+						</tr>
 						<% end %>						
-					</td>
-				</tr>
-				<% end %>						
-			</tbody>
-		</table>
+					</tbody>
+				</table>
+			</div>
+			
 		<% end %>
 
-		<%= link_to "Add Project" , new_project_path, class: "btn btn-primary" %>
+		<%= link_to "Add Project" , new_project_path, class: "btn btn-primary", style: "margin-top: 20px"%>
 
 	</div>
 

@@ -5,59 +5,64 @@
 		</div>
 				
 		<%= link_to "Export to Excel" , clients_path(format: "xls"), class: "btn btn-info" %>						
+		<script>
+			$(document).ready(function(){
+			    $('#clientsTable').DataTable();
+			});
+		</script>
 
 		<% if @clients.empty? %>
 			<p> No records found </p>
 		<% else %>
 
-		<div class="table-responsive">
-			<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Company</th>
-					<th>Mobile</th>
-					<th>Email</th>
-					<% if current_user.is_admin? %>
-						<th>User</th>
-					<% end %>
-					<th>Total Projects</th>
-					<th>Actions</th>
-
-				</tr>
-			</thead>
-
-			<tbody>
-				<% @clients.each_with_index do |client, index| %>
-				<tr>
-					<td><%= index + 1 %></td>
-					<td><%= link_to client.name.capitalize , client_path(client.id)  %></td>
-					<td><%= client.company.capitalize %></td>
-					<td><%= client.mobile %></td>			
-					<td><%= client.email %></td>
-
-					<% if current_user.is_admin? %>
-						<td><%= client.user.email %></td>
-					<% end %>
-					<td><%= client.projects.size %></td>
-					<td>
-						<%= link_to client_path(client.id) do %>
-							<span class="glyphicon glyphicon-eye-open"></span>
+		<div class="table-responsive" style="margin-top: 20px">
+			<table class="table table-striped" id="clientsTable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Company</th>
+						<th>Mobile</th>
+						<th>Email</th>
+						<% if current_user.is_admin? %>
+							<th>User</th>
 						<% end %>
-						
-					</td>
+						<th>Total Projects</th>
+						<th>Actions</th>
 
-				</tr>
-				<% end %>						
-			</tbody>
-		</table>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @clients.each_with_index do |client, index| %>
+					<tr>
+						<td><%= index + 1 %></td>
+						<td><%= link_to client.name.capitalize , client_path(client.id)  %></td>
+						<td><%= client.company.capitalize %></td>
+						<td><%= client.mobile %></td>			
+						<td><%= client.email %></td>
+
+						<% if current_user.is_admin? %>
+							<td><%= client.user.email %></td>
+						<% end %>
+						<td><%= client.projects.size %></td>
+						<td>
+							<%= link_to client_path(client.id) do %>
+								<span class="glyphicon glyphicon-eye-open"></span>
+							<% end %>
+							
+						</td>
+
+					</tr>
+					<% end %>						
+				</tbody>
+			</table>
 		</div>
 			
 		<% end %>
 
 		<% if can? :create, Client.new %>
-			<%= link_to "Add Client" , new_client_path, class: "btn btn-primary" %>
+			<%= link_to "Add Client" , new_client_path, class: "btn btn-primary", style: "margin-top: 20px"%>
 		<% end %>
 		
 	</div>
