@@ -4,11 +4,13 @@
 			<h2>Listing all clients</h2>	
 		</div>
 				
-		<%= link_to "Export to Excel" , clients_path(format: "xls"), class: "btn btn-info pull-right" %>						
+		<%= link_to "Export to Excel" , clients_path(format: "xls"), class: "btn btn-info" %>						
 
 		<% if @clients.empty? %>
 			<p> No records found </p>
 		<% else %>
+
+		<div class="table-responsive">
 			<table class="table table-striped">
 			<thead>
 				<tr>
@@ -17,6 +19,9 @@
 					<th>Company</th>
 					<th>Mobile</th>
 					<th>Email</th>
+					<% if current_user.is_admin? %>
+						<th>User</th>
+					<% end %>
 					<th>Total Projects</th>
 					<th>Actions</th>
 
@@ -31,6 +36,10 @@
 					<td><%= client.company.capitalize %></td>
 					<td><%= client.mobile %></td>			
 					<td><%= client.email %></td>
+
+					<% if current_user.is_admin? %>
+						<td><%= client.user.email %></td>
+					<% end %>
 					<td><%= client.projects.size %></td>
 					<td>
 						<%= link_to client_path(client.id) do %>
@@ -43,9 +52,14 @@
 				<% end %>						
 			</tbody>
 		</table>
+		</div>
+			
 		<% end %>
 
-		<%= link_to "Add Client" , new_client_path, class: "btn btn-primary" %>
+		<% if can? :create, Client.new %>
+			<%= link_to "Add Client" , new_client_path, class: "btn btn-primary" %>
+		<% end %>
+		
 	</div>
 	<div class="col-md-5">
 		<div class="page-header">

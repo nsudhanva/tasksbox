@@ -5,8 +5,9 @@ class ClientsController < ApplicationController
 	load_and_authorize_resource
 
 	def index
-		@clients = current_user.clients
+		#@clients = current_user.clients
 		#@clients = Client.all
+		@clients = current_user.is_admin? ? Client.all : current_user.clients
 	end
 
 	def new

@@ -42,7 +42,11 @@
 
             <%= link_to clients_path do %>
               Clients
-              <span class="badge"><%= current_user.clients.size %></span>
+                <% if current_user.is_admin? %>
+                  <span class="badge"><%= Client.all.size %></span>
+                <% else %>
+                  <span class="badge"><%= current_user.clients.size %></span>
+                <% end %>
               <% end %>
           </li> 
           

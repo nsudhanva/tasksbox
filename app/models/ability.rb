@@ -4,7 +4,9 @@ class Ability
   def initialize(user)
 
     if user.role == "admin"
-        can :manage, :all
+        #can :manage, :all
+        can [:read], [Client, Project, Task]
+        can :manage, [Product]
     elsif user.role == "user"
         can :manage, [Client, Project, Task]
     end
