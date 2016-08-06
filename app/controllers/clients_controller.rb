@@ -2,6 +2,7 @@ class ClientsController < ApplicationController
 
 	#before_filter :authenticate_user!
 	before_action :authenticate_user!
+	
 	load_and_authorize_resource
 
 	def index
@@ -64,4 +65,6 @@ class ClientsController < ApplicationController
 			params[:client].permit(:name, :company, :email, :mobile)
 			#Any data from form
 		end
+
+		
 end
