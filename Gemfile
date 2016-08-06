@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem 'faker'
 # Devise
 gem 'devise'
+# CanCan
+gem 'cancan'
 # Graphs
 gem 'chartkick'
 # Use SCSS for stylesheets

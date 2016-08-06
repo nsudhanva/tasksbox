@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
 	before_action :authenticate_user!
-
+	load_and_authorize_resource
 	def index
 		if params[:status]
 			@projects = current_user.projects.where('status = ?', params[:status])

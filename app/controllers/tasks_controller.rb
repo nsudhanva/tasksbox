@@ -1,6 +1,9 @@
 class TasksController < ApplicationController
+	before_action :authenticate_user!
+	load_and_authorize_resource
 
 	def create 
+
 		@task = Task.new(task_params)
 
 		if @task.save
