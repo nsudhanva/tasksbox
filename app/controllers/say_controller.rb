@@ -1,4 +1,8 @@
 class SayController < ApplicationController
+  #load and authorize needs  model to work
+
+  authorize_resource class: false
+  
   def hello
 
   end

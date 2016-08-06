@@ -7,8 +7,10 @@ class Ability
         #can :manage, :all
         can [:read], [Client, Project, Task]
         can :manage, [Product]
+        can [:hello, :goodbye], :say
     elsif user.role == "user"
         can :manage, [Client, Project, Task]
+        can [:hello], :say
     end
         
     # Define abilities for the passed in user here. For example:
