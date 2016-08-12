@@ -8,6 +8,12 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
+  <div>
+    <label>Select User Type</label>
+    <%= f.radio_button :role, "user" %>User
+     <%= f.radio_button :role, "admin" %>Admin
+  </div>
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
