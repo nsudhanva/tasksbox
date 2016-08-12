@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
   	method = "#{resource}_params"
   	params[resource] &&= send(method) if respond_to?(method, true)
   end
+
+  protected
+
+  def after_sign_up_path_for(resource)
+    #if current_user.role == "admin"
+       "http://www.google.com" # Or :prefix_to_your_route
+    #end
+  end
 end

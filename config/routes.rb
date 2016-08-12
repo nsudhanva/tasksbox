@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  get 'dashboards/index'
+
   resources :products
   get 'announcements/index'
 
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
   get 'tasks/mark_as_complete'
   get 'tasks/mark_as_incomplete'
   resources :categories
-  devise_for :users
+  devise_for :users, controllers: { dashboards: "dashboards" }
   resources :clients # Does all the below job
   resources :projects
   resources :tasks
