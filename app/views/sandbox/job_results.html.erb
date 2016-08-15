@@ -1,0 +1,27 @@
+<div class="page-header">
+	<h2>Total <%= @job_results["query"] %> jobs <small>in <%= @job_results["location"] %> is 
+	<%= @job_results["totalResults"] %></small>	</h2>
+</div>
+
+<table class="table table-striped" id="myTable">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Company</th>
+			<th>City</th>
+			<th>Source</th>
+			<th>Snippet</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @job_results["results"].each do |result| %>
+			<tr>
+				<td><%= result["jobtitle"] %></td>
+				<td><%= result["company"] %></td>
+				<td><%= result["city"] %></td>
+				<td><%= result["source"] %></td>
+				<td><%= raw(result["snippet"]) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

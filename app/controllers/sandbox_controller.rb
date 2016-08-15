@@ -12,5 +12,10 @@ class SandboxController < ApplicationController
   	#@projects = Project.order('start_date DESC')
   	#@projects = Project.order('start_date DESC').limit(5)
   end
+
+  def job_results
+    response = HTTParty.get('http://api.indeed.com/ads/apisearch?publisher=7277146494571922&q=ruby&co=india&l=bangalore&format=json&v=2')
+    @job_results = response.parsed_response
+  end
 end
    

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   get 'dashboards/index'
-
+  get 'sandbox/job_results'
   resources :products
   get 'announcements/index'
 
