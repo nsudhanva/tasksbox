@@ -22,3 +22,11 @@
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
+
+<h3>Lisiting all employees</h3>
+
+<ul>
+	<% @company.employees.each do |employee|%>
+		<li><%= employee.first_name %></li>
+	<% end %>
+</ul>

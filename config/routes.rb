@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :employees
   resources :companies
   get 'dashboards/index'
   get 'sandbox/job_results'
