@@ -91,6 +91,7 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
+    pg (0.18.4-x86-mingw32)
     pkg-config (1.1.7)
     rabl (0.13.0)
       activesupport (>= 2.3.14)
@@ -177,6 +178,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   rabl
   rails (= 4.2.5.1)
   sass-rails (~> 5.0)

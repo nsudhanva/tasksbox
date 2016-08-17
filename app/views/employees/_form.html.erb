@@ -19,9 +19,13 @@
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
-   <div class="field">
+  <div class="field">
     <%= f.label :companies %><br>
     <%= f.collection_select :company_id, Company.all, :id, :name, prompt: "Select Company "%><br>
+  </div>
+  <div class="field">
+    <%= f.label :department %><br>
+    <%= f.collection_select :department_id, Department.all, :id, :name, prompt: "Select Department "%><br>
   </div>
   <div class="actions">
     <%= f.submit %>

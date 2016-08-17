@@ -1,8 +1,8 @@
 class SandboxController < ApplicationController
   def clients
   	@clients = Client.all
-  	@client = Client.find(3)
-  	@client_by_id = Client.find(1, 2)
+  	#@client = Client.find(3)
+  	#@client_by_id = Client.find(1, 2)
   end
 
   def projects

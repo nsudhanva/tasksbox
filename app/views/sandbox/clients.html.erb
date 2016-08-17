@@ -1,27 +1,4 @@
 <h1>Total Clients <%= @clients.size %></h1>
-
-<% last_client = Client.last %>
-
-<% if last_client.projects.empty? %>
-	<h3>No projects found. Add your first project</h3>
-<% else %>
-	<b>Total Projects: <%= last_client.projects.size %></b>
-	<ul>		
-		<% last_client.projects.each do |project| %>
-		<li><%= project.name %></li>
-		<% end %>  
-	</ul>
-<% end %>
-
-<% @clients.each do |client| %>
-	<h3><%= client.details.html_safe %></h3>
-	<ul>
-		<% client.list_projects.each do |project|%>
-			<li><%= project.name %></li>
-		<% end %>	
-	</ul>
-<% end %>
-
 <table border="5">
 	<thead>
 		<tr>
@@ -48,6 +25,5 @@
 	</tbody>
 </table>
 
-<hr>
 
 
