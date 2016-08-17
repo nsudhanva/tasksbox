@@ -23,5 +23,6 @@ module Tasksbox
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.paths['app/views'] << "app/views/devise"
+    config.serve_static_assests = true
   end
 end
