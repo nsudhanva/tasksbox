@@ -7,7 +7,7 @@
   <%= javascript_include_tag "https://www.google.com/jsapi" %>
   <%= csrf_meta_tags %>
   
-  	<!-- Latest compiled and minified CSS -->
+  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <!-- Optional theme -->
@@ -19,109 +19,109 @@
 <body>
 
  <% if user_signed_in? %>     
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span> 
-          </button>
-          <a class="navbar-brand" href="/">TasksBox</a>
-        </div>
-        <ul class="nav navbar-nav">      
-          <li 
-            <% if controller.controller_name == "projects" %>
-                class="active"
-            <% end %>>
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="/">TasksBox</a>
+    </div>
+    <ul class="nav navbar-nav">      
+      <li 
+      <% if controller.controller_name == "projects" %>
+      class="active"
+      <% end %>>
 
-            <%= link_to projects_path do %>
-              Projects
-              <span class="badge"><%= current_user.projects.size %></span>
-              <% end %>
-          </li>
+      <%= link_to projects_path do %>
+      Projects
+      <span class="badge"><%= current_user.projects.size %></span>
+      <% end %>
+    </li>
 
-          <li
-            <% if controller.controller_name == "clients" %>
-                class="active"
-            <% end %>>
+    <li
+    <% if controller.controller_name == "clients" %>
+    class="active"
+    <% end %>>
 
-            <%= link_to clients_path do %>
-              Clients
-                <% if current_user.is_admin? %>
-                  <span class="badge"><%= Client.all.size %></span>
-                <% else %>
-                  <span class="badge"><%= current_user.clients.size %></span>
-                <% end %>
-              <% end %>
-          </li> 
-          
-          <li
-
-            <% if controller.controller_name == "categories" %>
-                class="active"
-            <% end %>>
-
-            <%= link_to "Categories", categories_path %> 
-          </li> 
-
-          <li
-
-            <% if controller.controller_name == "announcements" %>
-                class="active"
-            <% end %>><%= link_to "Announcements", announcements_path %> 
-          </li> 
-        </ul>
-        
-        <ul class="nav navbar-nav navbar-right">      
-
-            <li>        
-              <%= link_to "Edit Account", edit_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-            </li>
-
-        </ul>
-      </div>
-    </nav>
+    <%= link_to clients_path do %>
+    Clients
+    <% if current_user.is_admin? %>
+    <span class="badge"><%= Client.all.size %></span>
     <% else %>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">TasksBox</a>
-        </div>
-        <ul class="nav navbar-nav">      
-          
-        </ul>
-        <ul class="nav navbar-nav navbar-right">      
-          
-            <li><%= link_to "Login", new_user_session_path %></li>
-            <li><%= link_to "Sign Up", new_user_registration_path %></li>
-
-          </ul>
-      </div>
-    </nav>
+    <span class="badge"><%= current_user.clients.size %></span>
     <% end %>
+    <% end %>
+  </li> 
+  
+  <li
+
+  <% if controller.controller_name == "categories" %>
+  class="active"
+  <% end %>>
+
+  <%= link_to "Categories", categories_path %> 
+</li> 
+
+<li
+
+<% if controller.controller_name == "announcements" %>
+class="active"
+<% end %>><%= link_to "Announcements", announcements_path %> 
+</li> 
+</ul>
+
+<ul class="nav navbar-nav navbar-right">      
+
+  <li>        
+    <%= link_to "Edit Account", edit_user_registration_path %>
+  </li>
+  <li>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  </li>
+
+</ul>
+</div>
+</nav>
+<% else %>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">TasksBox</a>
+    </div>
+    <ul class="nav navbar-nav">      
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">      
+      
+      <li><%= link_to "Login", new_user_session_path %></li>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+
+    </ul>
+  </div>
+</nav>
+<% end %>
 
 <div class="container after-nav">
 
   <% if notice %>
-    <p class="notice alert alert-success"><%= notice %></p>
+  <p class="notice alert alert-success"><%= notice %></p>
   <% end %>
-  	
+  
   <% if alert %>
-    <p class="alert alert alert-danger"><%= alert %></p>
+  <p class="alert alert alert-danger"><%= alert %></p>
   <% end %>
-  	
+  
 
-	<%= yield %>
+  <%= yield %>
 </div>
 
 
 
 <!-- jQuery library -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
