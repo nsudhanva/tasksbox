@@ -31,15 +31,15 @@
     </div>
     <ul class="nav navbar-nav">      
       <li 
-      <% if controller.controller_name == "projects" %>
-      class="active"
-      <% end %>>
+        <% if controller.controller_name == "projects" %>
+        class="active"
+        <% end %>>
 
-      <%= link_to projects_path do %>
-      Projects
-      <span class="badge"><%= current_user.projects.size %></span>
-      <% end %>
-    </li>
+        <%= link_to projects_path do %>
+        Projects
+        <span class="badge"><%= current_user.projects.size %></span>
+        <% end %>
+      </li>
 
     <li
     <% if controller.controller_name == "clients" %>

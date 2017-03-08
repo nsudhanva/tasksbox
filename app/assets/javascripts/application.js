@@ -15,4 +15,3 @@
 // require turbolinks
 //= require chartkick
 //= require_tree .
-

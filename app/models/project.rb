@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+.class Project < ActiveRecord::Base
 
 	#has_many :join_table
 	#has_many :associated_table, through: :join_table
